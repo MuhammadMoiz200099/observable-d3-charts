@@ -11,21 +11,16 @@ export default function define(runtime, observer) {
     .variable(observer("chart"))
     .define(
       "chart",
-      ["PieChart", "datasource", "width"],
-      function (PieChart, datasource, width) {
-        return PieChart(datasource, {
-          name: (d) => d.name,
-          value: (d) => d.value,
-          width,
-          height: 500,
-        });
+      ["BarChart", "datasource", "width"],
+      function (BarChart, datasource, width) {
+        return BarChart(datasource);
       }
     );
   main.define("datasource", ["FileAttachment"], function (FileAttachment) {
     return FileAttachment("dataset.csv").csv({ typed: true });
   });
-  main.define("PieChart", ["d3"], function (d3) {
-    return function PieChart(datasource) {
+  main.define("BarChart", ["d3"], function (d3) {
+    return function BarChart(datasource) {
       console.log(datasource);
       // return Object.assign(svg.node(), { scales: { color } });
     };
