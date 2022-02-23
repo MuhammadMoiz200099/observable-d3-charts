@@ -17,18 +17,27 @@
     </div>
     <div class="container">
       <div class="data-coloumn">
-        <button onclick="update('NO','#69b3a2')">NO</button>
-        <button onclick="update('NO2','red')">NO2</button>
-        <button onclick="update('SO2','red')">SO2</button>
-        <button onclick="update('O3','#69b3a2')">O3</button>
-        <button onclick="update('PM10','#69b3a2')">PM10</button>
-        <button onclick="update('PM25','#69b3a2')">PM2.5</button>
+        <button onclick="updateChart('NO','#69b3a2')">NO</button>
+        <button onclick="updateChart('NO2','red')">NO2</button>
+        <button onclick="updateChart('SO2','red')">SO2</button>
+        <button onclick="updateChart('O3','#69b3a2')">O3</button>
+        <button onclick="updateChart('PM10','#69b3a2')">PM10</button>
+        <button onclick="updateChart('PM25','#69b3a2')">PM2.5</button>
       </div>
       <div class="chart">
         <div id="chart"></div>
       </div>
     </div>
-    <script src="https://d3js.org/d3.v4.js"></script>
-    <script src="./scripts/piechart.script.js"></script>
+    <script type="module">
+      import define from "./scripts/piechart/pie.js";
+      import { Runtime, Library, Inspector } from "./scripts/runtime.js";
+
+      const runtime = new Runtime();
+      const main = runtime.module(define, Inspector.into(document.getElementById('chart')));
+
+      function updateChart(selectedValiable, selectedColor) {
+        console.log(selectedValiable, selectedColor);
+      }
+    </script>
   </body>
 </html>

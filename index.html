@@ -28,7 +28,12 @@
         <div id="chart"></div>
       </div>
     </div>
-    <script src="https://d3js.org/d3.v4.js"></script>
-    <script src="./scripts/barchart.script.js"></script>
+    <script type="module">
+      import define from "./scripts/barchart/bar.js";
+      import { Runtime, Library, Inspector } from "./scripts/runtime.js";
+
+      const runtime = new Runtime();
+      const main = runtime.module(define, Inspector.into(document.getElementById('chart')));
+    </script>
   </body>
 </html>
