@@ -79,10 +79,13 @@ export default function define(runtime, observer) {
         })
         .attr("width", x.bandwidth())
         .attr("height", function (d) {
-          console.log(
-            height - y(d["Polluant"] === selectedVar ? +d["valeur"] : 0)
-          );
-          return height - y(d["Polluant"] === selectedVar ? +d["valeur"] : 0);
+          let newHeight = height - y(d["Polluant"] === selectedVar ? +d["valeur"] : 0);
+
+          if (newHeight <= 0) {
+            newHeight = 0
+          }
+
+          return newHeight;
         })
         .style("fill", selectedColour);
 
